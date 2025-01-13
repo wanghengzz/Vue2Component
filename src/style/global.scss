@@ -1,0 +1,46 @@
+#app {
+  width: 100%;
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+// 添加一些全局的基础样式
+* {
+  box-sizing: border-box;
+}
+
+// 移除默认的列表样式
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+// 移除链接的默认样式
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.flex-y {
+  flex-direction: column;
+}
+
+// 水平方向
+.flex-x {
+  flex-direction: row;
+}
+.flex-1 {
+  flex: 1;
+}

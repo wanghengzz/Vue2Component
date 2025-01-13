@@ -1,32 +1,53 @@
+<!--
+ * @Author:
+ * @Date: 2024-09-19 15:12:58
+ * @LastEditors: Do not edit
+ * @LastEditTime: 2025-01-06 09:58:48
+ * @Description:
+ * @FilePath: \vue2-project\src\App.vue
+-->
 <template>
   <div id="app">
     <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link v-for="item in routerList" :to="item.path" :key="item.path">{{ item.meta.title||item.name }}</router-link>
     </nav>
-    <router-view/>
+    <router-view />
   </div>
 </template>
+<script>
+import { getRouter } from './router'
+export default {
+  name: 'App',
+  data() {
+    return {
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+    }
+  },
+  computed: {
+    routerList() {
+      return getRouter()[0].children
+    }
+  },
+  mounted() {
+    console.log(getRouter())
+  }
 }
-
+</script>
+<style lang="scss" scoped>
 nav {
-  padding: 30px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+  height: 50px;
+  background-color: $headerBgColor;
+  padding: 0 20px;
+  a:hover {
+    color: $hoverColor;
+    text-decoration: underline;
+  }
 }
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
+#app {
+  height: 100vh;
 }
 </style>
