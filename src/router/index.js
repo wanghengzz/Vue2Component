@@ -2,7 +2,7 @@
  * @Author:
  * @Date: 2024-09-19 15:12:58
  * @LastEditors: Do not edit
- * @LastEditTime: 2025-01-06 09:41:05
+ * @LastEditTime: 2025-01-15 10:50:20
  * @Description:
  * @FilePath: \vue2-project\src\router\index.js
  */
@@ -34,6 +34,14 @@ const routes = [
           title: '关于'
         },
         component: () => import('../views/AboutView.vue')
+      },
+      {
+        path: '/iframe',
+        name: 'iframe',
+        meta: {
+          title: 'iframe'
+        },
+        component: () => import('../views/IframeView.vue')
       },
       {
         path: '/nestPage',
