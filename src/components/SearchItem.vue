@@ -116,7 +116,7 @@
         :size="item.size || 'mini'"
         :placeholder="item.placeholder || '请输入'"
         :fetch-suggestions="item.fetchSuggestions || defaultFetchSuggestions"
-        @select="item.handleSelect || defaultHandleSelect"
+        @select="item.handleSelect || defaultHandleSelect(item.field)"
         :trigger-on-focus="false"
         :clearable="item.clearable || true"
         :value-key="item.valueKey || 'value'"
@@ -198,7 +198,7 @@ export default {
       if(reg){
         this.formData[field] = this.formData[field].replace(reg, '')
       }
-      this.$emit('change',this.formData)
+      this.$emit('change',this.formData,field)
     },
 
     validate() {
@@ -227,9 +227,9 @@ export default {
       ])
     },
 
-    defaultHandleSelect() {
+    defaultHandleSelect(field) {
       // 默认的选择处理函数
-      this.$emit('change',this.formData)
+      this.$emit('change',this.formData,field)
     },
     defaultHandleSearchLast() {
       // 默认的搜索处理函数

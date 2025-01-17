@@ -2,7 +2,7 @@
  * @Author:
  * @Date: 2024-09-19 15:12:58
  * @LastEditors: Do not edit
- * @LastEditTime: 2025-01-09 13:21:49
+ * @LastEditTime: 2025-01-16 10:39:56
  * @Description:
  * @FilePath: \vue2-project\src\views\HomeView.vue
 -->
@@ -151,8 +151,8 @@ export default {
     search() {
       console.log('search', this.formData)
     },
-    handleChange(formData) {
-      console.log('handleChange', formData)
+    handleChange(formData,field) {
+      console.log('handleChange', formData,field)
     },
     reset() {
       console.log('reset')

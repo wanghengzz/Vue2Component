@@ -2,7 +2,7 @@
  * @Author:
  * @Date: 2025-01-03 14:46:07
  * @LastEditors: Do not edit
- * @LastEditTime: 2025-01-15 15:07:35
+ * @LastEditTime: 2025-01-15 17:21:51
  * @Description:
  * @FilePath: \vue2-project\src\views\IframeView.vue
 -->
@@ -49,6 +49,8 @@ export default {
     },
     // 发送消息给父页面
     sendMessageToParent() {
+      console.log(window);
+
       window.parent.postMessage({
         type: 'FROM_IFRAME',
         data: '这是来自iframe的消息Vue2'
