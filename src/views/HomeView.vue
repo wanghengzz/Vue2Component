@@ -2,25 +2,51 @@
  * @Author:
  * @Date: 2024-09-19 15:12:58
  * @LastEditors: Do not edit
- * @LastEditTime: 2025-01-16 10:39:56
+ * @LastEditTime: 2025-04-30 09:59:18
  * @Description:
  * @FilePath: \vue2-project\src\views\HomeView.vue
 -->
 <template>
   <div class="home">
     <!-- 查询条件 -->
-    <SearchContainer :customButtons="customButtons" :formConfig="formConfig" @save="save" @search="search"
-      @reset="reset" :formData="formData" ref="searchContainer" @change="handleChange">
+    <SearchContainer
+      :customButtons="customButtons"
+      :formConfig="formConfig"
+      @save="save"
+      @search="search"
+      @reset="reset"
+      :formData="formData"
+      ref="searchContainer"
+      @change="handleChange"
+    >
       <template #address>
-        <el-input placeholder="请输入地址" size="mini" v-model="formData.address"></el-input>
+        <el-input
+          placeholder="请输入地址"
+          size="mini"
+          v-model="formData.address"
+        ></el-input>
       </template>
     </SearchContainer>
     <!-- 弹窗 -->
     <el-button @click="dialogVisible = true" size="small">弹窗</el-button>
-    <CommonDialog v-model="dialogVisible" title="提示" width="40%" @confirm="confirm" @close="close">
-      <SearchItem :formConfig="formConfig" ref="searchForm" :formData="formData">
+    <CommonDialog
+      v-model="dialogVisible"
+      title="提示"
+      width="40%"
+      @confirm="confirm"
+      @close="close"
+    >
+      <SearchItem
+        :formConfig="formConfig"
+        ref="searchForm"
+        :formData="formData"
+      >
         <template #address>
-          <el-input placeholder="请输入地址" size="mini" v-model="formData.address"></el-input>
+          <el-input
+            placeholder="请输入地址"
+            size="mini"
+            v-model="formData.address"
+          ></el-input>
         </template>
       </SearchItem>
     </CommonDialog>
@@ -28,10 +54,10 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'HomeView',
-  components: {
-  },
+  components: {},
   data() {
     return {
       customButtons: [
@@ -40,8 +66,9 @@ export default {
           type: 'primary',
           size: 'small',
           icon: 'el-icon-download',
-          clickFun: () => {
-            console.log(this);
+          clickFun: async() => {
+            await new Promise(resolve => setTimeout(resolve, 2000))
+            console.log(this)
             console.log('导出')
           },
         },
@@ -60,7 +87,7 @@ export default {
           type: 'input',
           placeholder: '请输入姓名',
           rules: [
-            { required: true, message: '请输入姓名', trigger: 'blur'},
+            { required: true, message: '请输入姓名', trigger: 'blur' },
             {
               min: 2,
               max: 5,
@@ -74,7 +101,7 @@ export default {
           field: 'gender',
           label: '性别',
           type: 'select',
-          options: this.$store.getters.enume.sex||[],
+          options: this.$store.getters.enume.sex || [],
           rules: [{ required: true, message: '请选择性别', trigger: 'change' }],
         },
         {
@@ -87,7 +114,7 @@ export default {
           field: 'industry',
           label: '职业',
           type: 'select',
-          options: this.$store.getters.enume.industry ||[],
+          options: this.$store.getters.enume.industry || [],
           multiple: true,
         },
         {
@@ -98,9 +125,24 @@ export default {
           labelKey: ['enumeValue', 'enumeLabel'], // 下拉展示多个属性字段
           fetchSuggestions: (query, callback) => {
             let list = [
-              { value: '170', label: '170', enumeValue: '170000', enumeLabel: '170cm' },
-              { value: '171', label: '171', enumeValue: '171000', enumeLabel: '171cm' },
-              { value: '172', label: '172', enumeValue: '172000', enumeLabel: '172cm' },
+              {
+                value: '170',
+                label: '170',
+                enumeValue: '170000',
+                enumeLabel: '170cm',
+              },
+              {
+                value: '171',
+                label: '171',
+                enumeValue: '171000',
+                enumeLabel: '171cm',
+              },
+              {
+                value: '172',
+                label: '172',
+                enumeValue: '172000',
+                enumeLabel: '172cm',
+              },
             ]
             callback(list)
           },
@@ -116,9 +158,24 @@ export default {
           // labelKey: 'enumeLabel', // 下拉展示单个属性字段
           fetchSuggestions: (query, callback) => {
             let list = [
-              { value: '170', label: '170', enumeValue: '170000', enumeLabel: '170kg' },
-              { value: '171', label: '171', enumeValue: '171000', enumeLabel: '171kg' },
-              { value: '172', label: '172', enumeValue: '172000', enumeLabel: '172kg' },
+              {
+                value: '170',
+                label: '170',
+                enumeValue: '170000',
+                enumeLabel: '170kg',
+              },
+              {
+                value: '171',
+                label: '171',
+                enumeValue: '171000',
+                enumeLabel: '171kg',
+              },
+              {
+                value: '172',
+                label: '172',
+                enumeValue: '172000',
+                enumeLabel: '172kg',
+              },
             ]
             callback(list)
           },
@@ -151,16 +208,31 @@ export default {
     search() {
       console.log('search', this.formData)
     },
-    handleChange(formData,field) {
-      console.log('handleChange', formData,field)
+    handleChange(formData, field) {
+      console.log('handleChange', formData, field)
     },
     reset() {
       console.log('reset')
     },
     async confirm() {
       try {
-        await this.$refs.searchForm.validate()
-        console.log('confirm', this.formData)
+        let res = await this.$refs.searchForm.validate()
+        if (res) {
+          this.$confirm('确认删除吗？', '提示', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning',
+            customClass: 'custom-message-box',
+          })
+            .then(() => {
+              this.dialogVisible = false
+              this.$refs.searchForm.resetForm()
+              console.log('确定')
+            })
+            .catch(() => {
+              console.log('取消')
+            })
+        }
       } catch (error) {
         console.log(error)
       }
@@ -171,9 +243,14 @@ export default {
       console.log('close')
     },
   },
-  mounted(){
-    console.log(this.$store.getters.enume);
-
-  }
+  mounted() {
+  },
 }
 </script>
+<style lang="scss" scoped>
+// 弹窗容器
+.el-message-box__wrapper {
+  position: fixed !important;
+  z-index: 9999 !important;
+}
+</style>
