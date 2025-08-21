@@ -1,13 +1,8 @@
 /*
  * @Author:
  * @Date: 2024-09-19 15:12:58
-<<<<<<< HEAD
  * @LastEditors: wangheng 306604343@qq.com
- * @LastEditTime: 2025-07-31 23:01:11
-=======
- * @LastEditors: Do not edit
- * @LastEditTime: 2025-02-27 08:39:08
->>>>>>> 18523955daa5807c571b18738ec472debc5d225a
+ * @LastEditTime: 2025-08-21 20:48:33
  * @Description:
  * @FilePath: /Vue2Component/vue.config.js
  */
@@ -19,7 +14,6 @@ module.exports = defineConfig({
   devServer: {
     port: 8081 || process.env.PORT,
     proxy: {
-<<<<<<< HEAD
       // 代理所有 /api 开头的请求
       '/api': {
         target: 'http://localhost:9000',
@@ -37,16 +31,6 @@ module.exports = defineConfig({
         },
       },
     },
-=======
-      '/api': {
-        target: localServe, // 后端服务器地址
-        changeOrigin: true, // 允许跨域
-        pathRewrite: {
-          '^/api': '' // 重写路径，删除 /api 前缀
-        },
-      }
-    }
->>>>>>> 18523955daa5807c571b18738ec472debc5d225a
   },
   // 配置打包路径
   outputDir: 'dist',
@@ -67,7 +51,7 @@ module.exports = defineConfig({
     loaderOptions: {
       // 不同 sass-loader 版本对应关键字， v8-: data   v8: prependData   v10+: additionalData
       scss: {
-        data: `@import "~@/style/variables.scss";`,
+        data: `@import "@/style/variables.scss";`,
       },
     },
   },

@@ -259,7 +259,7 @@ export default {
       // 2. 缩放滑块控件 - 垂直滑动条
       if (this.controlsVisible.zoomSlider) {
         const zoomSlider = new ZoomSlider({
-          className: 'custom-zoom-slider'
+          className: 'custom-zoom-slider',
         })
         controls.push(zoomSlider)
       }
@@ -1174,7 +1174,7 @@ export default {
 }
 
 // 地图控件样式优化
-:deep(.ol-control) {
+::v-deep .ol-control {
   background: rgba(255, 255, 255, 0.9) !important;
   border-radius: 6px !important;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
@@ -1182,7 +1182,7 @@ export default {
 }
 
 // 自定义缩放控件样式
-:deep(.custom-zoom) {
+::v-deep .custom-zoom {
   top: 100px !important;
   left: 20px !important;
 
@@ -1202,7 +1202,7 @@ export default {
 }
 
 // 缩放滑块样式
-:deep(.custom-zoom-slider) {
+::v-deep .custom-zoom-slider {
   top: 100px !important;
   left: 70px !important;
   // height: 200px;
@@ -1278,7 +1278,7 @@ export default {
 }
 
 // 比例尺样式
-:deep(.custom-scale-line) {
+::v-deep .custom-scale-line {
   bottom: 20px !important;
   left: 20px !important;
   background: rgba(255, 255, 255, 0.9) !important;
@@ -1294,7 +1294,7 @@ export default {
 }
 
 // 鼠标位置样式
-:deep(.custom-mouse-position) {
+::v-deep .custom-mouse-position {
   position: fixed !important;
   bottom: 20px !important;
   left: 50% !important;
@@ -1316,7 +1316,7 @@ export default {
 }
 
 // 全屏控件样式
-:deep(.custom-fullscreen) {
+::v-deep .custom-fullscreen {
   top: 100px !important;
   right: 20px !important;
 
@@ -1334,7 +1334,7 @@ export default {
 }
 
 // 缩放到范围控件样式
-:deep(.custom-zoom-extent) {
+::v-deep .custom-zoom-extent {
   top: 150px !important;
   right: 20px !important;
 
@@ -1352,7 +1352,7 @@ export default {
 }
 
 // 版权信息样式
-:deep(.custom-attribution) {
+::v-deep .custom-attribution {
   bottom: 60px !important;
   right: 20px !important;
   max-width: 300px !important;
@@ -1369,7 +1369,7 @@ export default {
 }
 
 // 自定义小地图样式
-:deep(.custom-mini-map) {
+::v-deep .custom-mini-map {
   bottom: 100px !important;
   left: 20px !important;
   background: rgba(255, 255, 255, 0.9) !important;
@@ -1388,12 +1388,12 @@ export default {
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    
+
     &:hover {
       background: #f0f0f0 !important;
       border-color: #007bff !important;
     }
-    
+
     &:active {
       background: #e0e0e0 !important;
     }
@@ -1406,7 +1406,7 @@ export default {
     border-radius: 6px !important;
     margin-top: 5px !important;
     background: white !important;
-    
+
     // 确保小地图内容正确显示
     .ol-viewport {
       border-radius: 4px !important;
@@ -1415,7 +1415,7 @@ export default {
 }
 
 // 原来的鹰眼图样式 - 保留以防需要
-:deep(.custom-overview-map) {
+::v-deep .custom-overview-map {
   bottom: 100px !important;
   left: 20px !important;
   width: 150px !important;
@@ -1478,8 +1478,8 @@ export default {
 }
 
 // 自定义控件面板通用样式
-:deep(.custom-layer-switcher),
-:deep(.custom-tool-control) {
+::v-deep .custom-layer-switcher,
+::v-deep .custom-tool-control {
   top: 200px !important;
   right: 20px !important;
   margin-bottom: 10px !important;
@@ -1546,7 +1546,7 @@ export default {
 }
 
 // 工具控件位置调整
-:deep(.custom-tool-control) {
+::v-deep .custom-tool-control {
   top: 320px !important;
 }
 </style>

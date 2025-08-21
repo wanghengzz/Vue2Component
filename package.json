@@ -12,11 +12,7 @@
     "start": "vue-cli-service serve --mode development"
   },
   "dependencies": {
-<<<<<<< HEAD
     "axios": "^1.11.0",
-=======
-    "axios": "^1.7.9",
->>>>>>> 18523955daa5807c571b18738ec472debc5d225a
     "core-js": "^3.8.3",
     "element-ui": "^2.15.14",
     "ol": "^10.2.1",

@@ -107,10 +107,13 @@
             <span v-else-if="item.type === 'enum'">
               <span v-if="item.options && item.options.length > 0">
                 {{
-                  item.options.find(
-                    (option) =>
-                      option[item.valueKey || 'value'] === scope.row[item.prop]
-                  )?.[item.labelKey || 'label']
+                  (() => {
+                    const foundOption = item.options.find(
+                      (option) =>
+                        option[item.valueKey || 'value'] === scope.row[item.prop]
+                    );
+                    return foundOption ? foundOption[item.labelKey || 'label'] : '';
+                  })()
                 }}
               </span>
               <span v-else>{{ scope.row[item.prop] }}</span>

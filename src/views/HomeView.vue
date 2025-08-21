@@ -1,12 +1,8 @@
 <!--
  * @Author:
  * @Date: 2024-09-19 15:12:58
- * @LastEditors: Do not edit
-<<<<<<< HEAD
- * @LastEditTime: 2025-06-23 22:00:31
-=======
- * @LastEditTime: 2025-04-30 09:59:18
->>>>>>> 18523955daa5807c571b18738ec472debc5d225a
+ * @LastEditors: wangheng 306604343@qq.com
+ * @LastEditTime: 2025-08-21 20:55:03
  * @Description:
  * @FilePath: /Vue2Component/src/views/HomeView.vue
 -->
@@ -85,12 +81,8 @@ export default {
           type: 'primary',
           size: 'small',
           icon: 'el-icon-download',
-<<<<<<< HEAD
-          clickFun: () => {
-=======
           clickFun: async() => {
             await new Promise(resolve => setTimeout(resolve, 2000))
->>>>>>> 18523955daa5807c571b18738ec472debc5d225a
             console.log(this)
             console.log('导出')
           },
@@ -267,10 +259,6 @@ export default {
     },
   },
   mounted() {
-<<<<<<< HEAD
-    console.log(this.$store.getters.enume)
-=======
->>>>>>> 18523955daa5807c571b18738ec472debc5d225a
   },
 }
 </script>
