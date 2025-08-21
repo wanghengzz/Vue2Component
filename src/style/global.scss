@@ -44,3 +44,17 @@ a {
 .flex-1 {
   flex: 1;
 }
+
+// SmartFormItem 错误气泡样式
+.smart-error-tooltip {
+  background: #f56c6c !important;
+  border-color: #f56c6c !important;
+  color: #fff !important;
+}
+
+.smart-error-tooltip .el-tooltip__popper {
+  background: #f56c6c !important;
+  border-color: #f56c6c !important;
+  color: #fff !important;
+}
+

@@ -2,9 +2,9 @@
  * @Author:
  * @Date: 2025-01-03 14:46:07
  * @LastEditors: Do not edit
- * @LastEditTime: 2025-01-15 17:21:51
+ * @LastEditTime: 2025-06-23 21:25:40
  * @Description:
- * @FilePath: \vue2-project\src\views\IframeView.vue
+ * @FilePath: /Vue2Component/src/views/IframeView.vue
 -->
 <template>
   <div class="iframe-container">

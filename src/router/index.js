@@ -1,10 +1,10 @@
 /*
  * @Author:
  * @Date: 2024-09-19 15:12:58
- * @LastEditors: Do not edit
- * @LastEditTime: 2025-01-15 10:50:20
+ * @LastEditors: wangheng 306604343@qq.com
+ * @LastEditTime: 2025-08-20 16:54:15
  * @Description:
- * @FilePath: \vue2-project\src\router\index.js
+ * @FilePath: /Vue2Component/src/router/index.js
  */
 import Vue from 'vue'
 import VueRouter from 'vue-router'
@@ -34,6 +34,14 @@ const routes = [
           title: '关于'
         },
         component: () => import('../views/AboutView.vue')
+      },
+      {
+        path: '/map',
+        name: 'map',
+        meta: {
+          title: '地图'
+        },
+        component: () => import('../views/Map.vue')
       },
       {
         path: '/iframe',
