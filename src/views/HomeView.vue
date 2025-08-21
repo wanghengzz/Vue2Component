@@ -2,7 +2,11 @@
  * @Author:
  * @Date: 2024-09-19 15:12:58
  * @LastEditors: Do not edit
+<<<<<<< HEAD
  * @LastEditTime: 2025-06-23 22:00:31
+=======
+ * @LastEditTime: 2025-04-30 09:59:18
+>>>>>>> 18523955daa5807c571b18738ec472debc5d225a
  * @Description:
  * @FilePath: /Vue2Component/src/views/HomeView.vue
 -->
@@ -69,6 +73,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'HomeView',
   components: {},
@@ -80,7 +85,12 @@ export default {
           type: 'primary',
           size: 'small',
           icon: 'el-icon-download',
+<<<<<<< HEAD
           clickFun: () => {
+=======
+          clickFun: async() => {
+            await new Promise(resolve => setTimeout(resolve, 2000))
+>>>>>>> 18523955daa5807c571b18738ec472debc5d225a
             console.log(this)
             console.log('导出')
           },
@@ -229,8 +239,23 @@ export default {
     },
     async confirm() {
       try {
-        await this.$refs.searchForm.validate()
-        console.log('confirm', this.formData)
+        let res = await this.$refs.searchForm.validate()
+        if (res) {
+          this.$confirm('确认删除吗？', '提示', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning',
+            customClass: 'custom-message-box',
+          })
+            .then(() => {
+              this.dialogVisible = false
+              this.$refs.searchForm.resetForm()
+              console.log('确定')
+            })
+            .catch(() => {
+              console.log('取消')
+            })
+        }
       } catch (error) {
         console.log(error)
       }
@@ -242,7 +267,17 @@ export default {
     },
   },
   mounted() {
+<<<<<<< HEAD
     console.log(this.$store.getters.enume)
+=======
+>>>>>>> 18523955daa5807c571b18738ec472debc5d225a
   },
 }
 </script>
+<style lang="scss" scoped>
+// 弹窗容器
+.el-message-box__wrapper {
+  position: fixed !important;
+  z-index: 9999 !important;
+}
+</style>

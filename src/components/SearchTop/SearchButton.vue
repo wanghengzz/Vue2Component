@@ -1,19 +1,3 @@
-<!--
- * @Author:
- * @Date: 2024-12-31 10:29:30
- * @LastEditors: Do not edit
- * @LastEditTime: 2025-01-02 09:52:40
- * @Description:
- * @FilePath: \vue2-project\src\components\SearchTop\SearchButton.vue
--->
-<!--
- * @Author:
- * @Date: 2024-12-31 10:29:30
- * @LastEditors: Do not edit
- * @LastEditTime: 2024-12-31 13:21:11
- * @Description:
- * @FilePath: \vue2-project\src\components\SearchTop\SearchButton.vue
--->
 <template>
   <div class="search-button">
     <!-- 默认按钮 -->
@@ -28,7 +12,8 @@
         :type="btn.type"
         :size="btn.size"
         :icon="btn.icon"
-        @click="handleButtonClick(btn)"
+        :loading="loadingStatus[index]"
+        @click="handleButtonClick(btn,index)"
       >
         {{ btn.text }}
       </el-button>
@@ -39,6 +24,11 @@
 <script>
 export default {
   name: 'SearchButton',
+  data(){
+    return{
+      loadingStatus:[]
+    }
+  },
   props: {
     // 自定义按钮配置
     customButtons: {
@@ -50,6 +40,15 @@ export default {
       default: 'small',
     },
   },
+  watch: {
+    customButtons:{
+      handler(newVal){
+        this.loadingStatus = new Array(newVal.length).fill(false)
+      },
+      deep:true,
+      immediate:true
+    }
+  },
   methods: {
     handleSearch() {
       this.$emit('search')
@@ -57,13 +56,25 @@ export default {
     handleReset() {
       this.$emit('reset')
     },
-    handleButtonClick(btn) {
+    async handleButtonClick(btn,index) {
+      console.log(this.loadingStatus);
+
       // 如果定义了具体的函数名，则触发对应的事件
       if (btn.funName) {
-        this.$emit(btn.funName, btn)
+        try{
+          this.$set(this.loadingStatus, index, true)
+          await this.$emit(btn.funName, btn)
+        }finally{
+          this.$set(this.loadingStatus, index, false)
+        }
       } else if (btn.clickFun && typeof btn.clickFun === 'function') {
         // 如果定义了clickFun，则直接执行
-        btn.clickFun(btn)
+        try{
+          this.$set(this.loadingStatus, index, true)
+          await btn.clickFun(btn)
+        }finally{
+          this.$set(this.loadingStatus, index, false)
+        }
       }
     }
   },
